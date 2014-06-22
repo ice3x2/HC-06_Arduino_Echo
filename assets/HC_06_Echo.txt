@@ -1,0 +1,34 @@
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><font color="#cd2828">#include &lt;SoftwareSerial.h&gt;</font><br/>
+
+<font color="#cd2828">#define rxPin 2</font><br/>
+<font color="#cd2828">#define txPin 3</font><br/>
+<font color="#cd2828">#define ledPin 13</font><br/>
+<font color="#cd2828">#define BUFF_SIZE 256</font><br/>
+<font color="#d0d0d0">SoftwareSerial</font> <font color="#447fcf">swSerial</font><font color="#d0d0d0">(txPin,</font> <font color="#d0d0d0">rxPin);</font><br/>
+<font color="#6ab825">uint8_t</font> <font color="#d0d0d0">buffer[BUFF_SIZE];</font><br/>
+<font color="#6ab825">uint8_t</font> <font color="#d0d0d0">index</font> <font color="#d0d0d0">=</font> <font color="#3677a9">0</font><font color="#d0d0d0">;</font><br/>
+<font color="#6ab825">uint8_t</font> <font color="#d0d0d0">data;</font><br/>
+<br/>
+<br/>
+<font color="#6ab825">void</font> <font color="#447fcf">setup</font><font color="#d0d0d0">()</font> <font color="#d0d0d0">{</font><br/>
+&nbsp;&nbsp;<font color="#d0d0d0">swSerial.begin(</font><font color="#3677a9">9600</font><font color="#d0d0d0">);</font><br/>
+&nbsp;&nbsp;<font color="#d0d0d0">pinMode(ledPin,</font> <font color="#d0d0d0">OUTPUT);</font><br/>
+<font color="#d0d0d0">}</font><br/>
+<br/>
+<font color="#6ab825">void</font> <font color="#447fcf">loop</font><font color="#d0d0d0">()</font> <font color="#d0d0d0">{</font><br/>
+&nbsp;&nbsp;<font color="#d0d0d0">digitalWrite(ledPin,</font> <font color="#d0d0d0">LOW);</font><br/>
+&nbsp;&nbsp;<font color="#6ab825">while</font><font color="#d0d0d0">(!swSerial.available());</font><br/>
+&nbsp;&nbsp;<font color="#d0d0d0">digitalWrite(ledPin,</font> <font color="#d0d0d0">HIGH);</font><br/>
+&nbsp;&nbsp;<font color="#6ab825">while</font><font color="#d0d0d0">(swSerial.available())</font> <font color="#d0d0d0">{</font><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d0d0d0">data</font> <font color="#d0d0d0">=</font> <font color="#d0d0d0">swSerial.read();</font><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d0d0d0">buffer[index++]</font> <font color="#d0d0d0">=</font> <font color="#d0d0d0">data;</font><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6ab825">if</font><font color="#d0d0d0">(index</font> <font color="#d0d0d0">==</font> <font color="#d0d0d0">BUFF_SIZE</font> <font color="#d0d0d0">||</font> <font color="#d0d0d0">data</font> <font color="#d0d0d0">==</font> <font color="#ed9d13">&#39;\0&#39;</font><font color="#d0d0d0">)</font> <font color="#6ab825">break</font><font color="#d0d0d0">;</font><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d0d0d0">delay(</font><font color="#3677a9">1</font><font color="#d0d0d0">);</font><br/>
+&nbsp;&nbsp;<font color="#d0d0d0">}</font>   <br/>
+<br/>
+&nbsp;&nbsp;<font color="#6ab825">for</font><font color="#d0d0d0">(</font><font color="#6ab825">uint8_t</font> <font color="#d0d0d0">i</font> <font color="#d0d0d0">=</font> <font color="#3677a9">0</font><font color="#d0d0d0">;</font> <font color="#d0d0d0">i</font> <font color="#d0d0d0">&lt;</font> <font color="#d0d0d0">index;</font> <font color="#d0d0d0">++i)</font> <font color="#d0d0d0">{</font><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d0d0d0">swSerial.write(buffer[i]);</font><br/>
+&nbsp;&nbsp;<font color="#d0d0d0">}</font><br/>
+&nbsp;&nbsp;<font color="#d0d0d0">index</font> <font color="#d0d0d0">=</font> <font color="#3677a9">0</font><font color="#d0d0d0">;</font><br/>
+<font color="#d0d0d0">}</font><br/>
+</pre>

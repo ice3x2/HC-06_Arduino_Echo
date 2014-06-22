@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kr.re.Dev.BluetoothEcho"
+    android:versionCode="1"
+    android:versionName="1.0" >
+    
+    <uses-permission android:name="android.permission.BLUETOOTH" /> 
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> 
+    
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+    
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" 
+        >
+        <activity
+            android:name="kr.re.Dev.ArduinoEcho.MainActivity"
+            android:label="@string/app_name"
+            android:configChanges="screenSize|orientation|keyboard"
+            android:windowSoftInputMode="adjustResize">
+                        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+				
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="kr.re.Dev.Bluetooth.BluetoothSerialClient$BluetoothUpActivity" 
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|screenSize|keyboard"></activity>
+    </application>
+
+</manifest>

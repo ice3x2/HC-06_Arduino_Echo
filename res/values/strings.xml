@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bluetooth Arduino Echo </string>
+    <string name="action_connect">Connect</string>
+    <string name="action_arduinocode">Show Arduino code</string>
+    <string name="action_disconnect">Disconnect</string>
+    <string name="action_settings"></string>
+
+</resources>
