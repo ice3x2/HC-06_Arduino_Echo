@@ -386,6 +386,8 @@ public class BluetoothSerialClient {
 			if(requestCode == REQUEST_ENABLE_BT) {
 		        	OnBluetoothEnabledListener onBluetoothEnabledListener = getInstance().mOnBluetoothUpListener;
 		            if (resultCode == Activity.RESULT_OK) {
+		            	
+		            	
 		            	if(onBluetoothEnabledListener != null) 
 		            		onBluetoothEnabledListener.onBluetoothEnabled(true);
 		            	finish();
